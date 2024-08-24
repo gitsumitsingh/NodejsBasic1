@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="getGreeting()">Click Me!</button>
+    <button id="btnClear" onclick="clear()">Clear</button>
+    <div style="margin-top: 15px" id="greeting"></div>
+
+    <script>
+      const element = document.getElementById('greeting');
+      const btnClear = document.getElementById('btnClear');
+      console.log(element,btnClear);
+
+      // btnClear.onclick((evt)=>{
+      //   console.log('test1');
+      // });
+
+      btnClear.addEventListener('click',clear);
+      
+      function clear(evt){
+        console.log('clear called',evt);        
+        element.textContent = '';
+      }
+
+      function getGreeting() {
+        console.log('getGreeting called');
+        try {          
+        element.textContent = 'loading...';
+        fetch('http://localhost:3000/user')
+          .then((res) => res.json())
+          .then((data) => {
+            console.log('data fetched successfully1',data);            
+            element.textContent = JSON.stringify(data);
+          })
+          .then((data) => {
+            console.log('data fetched then2',data);
+          })
+          .then((data) => {
+            console.log('data fetched then2',data);
+          })
+          .catch((err) => {
+            element.textContent = err.message;
+            console.error("Error in fetch user: ", err);
+          });
+        } catch (err) {
+            element.textContent = err.message;
+            console.error('Error in getGreeting: ',err);            
+        }
+      }
+
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+
+# dependencies
+/node_modules
+
+# static files
+/src/file/input.txt
+/src/file/mynewfile3.txt

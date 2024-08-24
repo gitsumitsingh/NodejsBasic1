@@ -1,0 +1,28 @@
+chnage directory
+>cd foldername
+
+go to previous directory
+> cd ..
+
+change directory to specific path
+>cd c:
+>cd d:/sumit/
+>cd d:/sumit/javascript/node/basics1/src/file
+
+to make a new directory
+>md dir1
+>mkdir dir2
+
+list down the directory
+>dir
+
+Type below in Command Prompt window and hit Enter, this will create an empty word file named work.
+>type nul > filename.fileextension
+e.g. >type nul > work.js
+
+If you want to create a file with some text in it, you can type below cmd
+>echo enter your text here > filename.txt
+
+To delete/remove a file/directory
+>del work.txt
+>rd test.js
