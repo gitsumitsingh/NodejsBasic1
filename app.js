@@ -25,39 +25,6 @@ function httpHandler(req, res) {
     // op = 2;
     // let op = 5;
 
-    //To handle errors in the HTTP module you can listen to the error event on the request and response objects
-
-    var bodyStream = [],
-      jsonBody = req.body;
-
-    const urlData = url.parse(req.url, true);
-    console.log("urlData :>> ", urlData);
-
-    req.on("data", (chunk) => {
-      console.log("Request data receiving from body:>> ", chunk);
-      bodyStream.push(chunk);
-    });
-
-    req.on("end", (obj) => {
-      if (bodyStream && bodyStream.length) {
-        const bufferData = Buffer.concat(bodyStream);
-        const requestBody = JSON.parse(bufferData || { urlData });
-        console.log("Request data received from body:>> ", requestBody);
-      }
-    });
-
-    req.on("error", (err) => {
-      console.log("Request error occurred :>> ", err);
-      res.statusCode = 400;
-      return res.end("Bad Request!");
-    });
-
-    res.on("error", (err) => {
-      console.log("Response error occurred :>> ", err);
-      res.statusCode = 500;
-      return res.end("Internal Server Error!");
-    });
-
     // Handle preflight requests
     if (req.method === "OPTIONS") {
       res.writeHead(200);
@@ -73,9 +40,47 @@ function httpHandler(req, res) {
 
     // GET profile page
     else if (req.url.includes("/profile")) {
-      const responseData = JSON.stringify({ data: "Profile page!", jsonBody });
-      res.write(responseData);
-      res.end();
+      //To handle errors in the HTTP module you can listen to the error event on the request and response objects
+
+      var bodyStream = [],
+        jsonBody = req.body,
+        requestBody = "";
+
+      const urlData = url.parse(req.url, true);
+      console.log("urlData :>> ", urlData);
+
+      req.on("data", (chunk) => {
+        console.log("Request data receiving from body:>> ", chunk);
+        bodyStream.push(chunk);
+      });
+
+      req.on("end", (obj) => {
+        if (bodyStream && bodyStream.length) {
+          // op = 3;
+          // let op = 4;
+          const bufferData = Buffer.concat(bodyStream);
+          requestBody = JSON.parse(bufferData || { urlData });
+          console.log("Request data received from body:>> ", requestBody);
+        }
+        const responseData = JSON.stringify({
+          data: "Profile page!",
+          requestBody,
+        });
+        res.write(responseData);
+        res.end();
+      });
+
+      req.on("error", (err) => {
+        console.log("Request error occurred :>> ", err);
+        res.statusCode = 400;
+        return res.end("Bad Request!");
+      });
+
+      res.on("error", (err) => {
+        console.log("Response error occurred :>> ", err);
+        res.statusCode = 500;
+        return res.end("Internal Server Error!");
+      });
     }
 
     // GET profile page

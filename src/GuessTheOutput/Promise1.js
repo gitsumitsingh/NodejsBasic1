@@ -1,4 +1,3 @@
-debugger;
 console.log("first");
 
 const promise = new Promise((resolve, reject) => {
