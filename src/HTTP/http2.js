@@ -6,8 +6,10 @@ const http2 = require("http2");
 // cert: 'path-to-public-cert.pem'
 // };
 
-// Create and initialize the server
+// Create and initialize the secure server like https://localhost:3000
 // const server = http2.createServer(options);
+
+// Create an unencrypted HTTP/2 server
 const server = http2.createServer();
 
 server.on("stream", (stream, headers) => {
@@ -16,6 +18,11 @@ server.on("stream", (stream, headers) => {
     "content-type": "text/html; charset=utf-8",
     ":status": 200,
   });
+
+  stream.on("error", (error) =>
+    console.error("Error in Streaming Server", error)
+  );
+
   stream.end("<h1>Hello World</h1>");
 });
 

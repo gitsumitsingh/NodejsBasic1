@@ -3,5 +3,5 @@
 /node_modules
 
 # static files
-/src/file/input.txt
-/src/file/mynewfile3.txt
+/src/file/op/input1.txt
+/src/file/op/mynewfile3.txt

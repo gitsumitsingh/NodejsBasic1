@@ -10,7 +10,10 @@
     "server2": "nodemon --inspect src/http/server2.js",
     "http2": "nodemon --inspect src/http/http2.js",
     "http2client": "nodemon --inspect src/http/http2client.js",
-    "debug": "nodemon --inspect main.js"
+    "http2client2": "nodemon --inspect src/http/http2client2.js",
+    "debug": "nodemon --inspect main.js",
+    "file1": "nodemon --inspect src/file/file1.js",
+    "spawn1": "nodemon --inspect src/child_process/spawn1.js"
   },
   "keywords": [],
   "author": "Sumit Singh",

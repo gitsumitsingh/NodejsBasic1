@@ -1,10 +1,10 @@
-let http2 = require("http2");
+const http2 = require("http2");
 
 // Create the client
-let client = http2.connect("http://localhost:3000");
+const client = http2.connect("http://localhost:3000");
 
 // Create the request
-let req = client.request({
+const req = client.request({
   path: "/",
 });
 

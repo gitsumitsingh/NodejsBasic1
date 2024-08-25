@@ -1,14 +1,17 @@
 var fs = require("fs");
 
+const SrcFolder = `${__dirname}/op/`;
+const mynewfile3 = SrcFolder + "mynewfile3.txt";
+
 //https://www.w3schools.com/nodejs/nodejs_filesystem.asp
-fs.writeFile("mynewfile3.txt", "This is my text", function (err) {
+fs.writeFile(mynewfile3, "This is my text", function (err) {
   if (err) throw err;
   console.log("Replaced!");
 });
 
 //https://www.geeksforgeeks.org/node-js-file-system/
 // Asynchronous read
-fs.readFile("mynewfile3.txt", function (err, data) {
+fs.readFile(mynewfile3, function (err, data) {
   if (err) {
     return console.error(err);
   }
@@ -16,12 +19,12 @@ fs.readFile("mynewfile3.txt", function (err, data) {
 });
 
 // Synchronous read
-var data = fs.readFileSync("mynewfile3.txt");
+var data = fs.readFileSync(mynewfile3);
 console.log("Synchronous read: " + data.toString());
 
 // Asynchronous - Opening File
 // console.log("opening file!");
-fs.open("mynewfile3.txt", "r+", function (err, fd) {
+fs.open(mynewfile3, "r+", function (err, fd) {
   if (err) {
     return console.error(err);
   }
@@ -31,7 +34,7 @@ fs.open("mynewfile3.txt", "r+", function (err, fd) {
 var buf = new Buffer(1024);
 
 console.log("opening an existing file2");
-fs.open("mynewfile3.txt", "r+", function (err, fd) {
+fs.open(mynewfile3, "r+", function (err, fd) {
   if (err) {
     return console.error(err);
   }
@@ -51,7 +54,9 @@ fs.open("mynewfile3.txt", "r+", function (err, fd) {
   });
 });
 
-fs.writeFile("input.txt", "Geeks For Geeks", function (err) {
+const input1 = SrcFolder + "input1.txt";
+
+fs.writeFile(input1, "Geeks For Geeks", function (err) {
   if (err) {
     return console.error(err);
   }
@@ -59,7 +64,7 @@ fs.writeFile("input.txt", "Geeks For Geeks", function (err) {
   console.log("Data written successfully!6");
   console.log("Let's read newly written data7");
 
-  fs.readFile("input.txt", function (err, data) {
+  fs.readFile(input1, function (err, data) {
     if (err) {
       return console.error(err);
     }
@@ -70,7 +75,7 @@ fs.writeFile("input.txt", "Geeks For Geeks", function (err) {
 var data = "\nLearn Node.js";
 // Append data to file
 fs.appendFile(
-  "input.txt",
+  input1,
   data,
   "utf8",
   // Callback function
@@ -81,19 +86,3 @@ fs.appendFile(
     console.log("Data is appended to file successfully.9");
   }
 );
-
-const { spawn } = require("node:child_process");
-const child = spawn("dir", ["D:Sumit:MERN_Stack:NodeProj1"], {
-  shell: true,
-});
-child.stdout.on("data", (data) => {
-  console.log(`stdout11: ${data}`);
-});
-
-child.stderr.on("data", (data) => {
-  console.error(`stderr12: ${data}`);
-});
-
-child.on("close", (code) => {
-  console.log(`child process exited with code 13 ${code}`);
-});
