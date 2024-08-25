@@ -1,4 +1,5 @@
 var http = require("http");
+const url = require("url");
 
 /**
  * Author: Sumit Singh
@@ -10,6 +11,7 @@ const httpServer = http.createServer(httpHandler);
 
 function httpHandler(req, res) {
   try {
+    // debugger;
     // Set CORS headers
     // res.setHeader("Access-Control-Allow-Origin", null);
     // res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
@@ -24,6 +26,26 @@ function httpHandler(req, res) {
     // let op = 5;
 
     //To handle errors in the HTTP module you can listen to the error event on the request and response objects
+
+    var bodyStream = [],
+      jsonBody = req.body;
+
+    const urlData = url.parse(req.url, true);
+    console.log("urlData :>> ", urlData);
+
+    req.on("data", (chunk) => {
+      console.log("Request data receiving from body:>> ", chunk);
+      bodyStream.push(chunk);
+    });
+
+    req.on("end", (obj) => {
+      if (bodyStream && bodyStream.length) {
+        const bufferData = Buffer.concat(bodyStream);
+        const requestBody = JSON.parse(bufferData || { urlData });
+        console.log("Request data received from body:>> ", requestBody);
+      }
+    });
+
     req.on("error", (err) => {
       console.log("Request error occurred :>> ", err);
       res.statusCode = 400;
@@ -50,8 +72,8 @@ function httpHandler(req, res) {
     }
 
     // GET profile page
-    else if (req.url === "/profile") {
-      const responseData = JSON.stringify({ data: "Profile page!" });
+    else if (req.url.includes("/profile")) {
+      const responseData = JSON.stringify({ data: "Profile page!", jsonBody });
       res.write(responseData);
       res.end();
     }

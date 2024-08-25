@@ -1,13 +1,14 @@
 {
   "name": "nodejsbasic1",
   "version": "1.0.0",
-  "description": "This is just an node js basics",
-  "main": "app.js",
+  "description": "This is just a node js basic to advanced concepts",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "dev": "nodemon --inspect server.js",
-    "new": "nodemon --inspect src/newserver.js"
+    "new": "nodemon --inspect src/newserver.js",
+    "debug": "nodemon --inspect main.js"
   },
   "keywords": [],
   "author": "Sumit Singh",
