@@ -1,6 +1,6 @@
 var http = require("http");
 const fs = require("fs");
-// const userPage = require("./User.html");
+const Port = 6100;
 http
   .createServer(function (req, res) {
     try {
@@ -15,7 +15,7 @@ http
 
       // GET user page
       else if (req.url === "/user") {
-        fetch("http://localhost:3000/user")
+        fetch("http://localhost:7000/user")
           .then((response) => response.json())
           .then((userData) => {
             console.log("user fetch success: ", userData);
@@ -48,7 +48,7 @@ http
 
       // GET profile page
       else if (req.url === "/profile") {
-        fs.readFile(__dirname + "/Views/User.html", function (err, data) {
+        fs.readFile(`${__dirname}/../Views/User.html`, function (err, data) {
           if (err) {
             const message = `User.html file not found!`;
             res.statusCode = 404;
@@ -84,6 +84,8 @@ http
       res.end();
     }
   })
-  .listen(8080, function () {
-    console.log("Server started on localhost:8080");
+  .listen(Port, function () {
+    //Google chrome considers 6000 as an unsafe port i.e why taken 6100 port
+    console.log(`Server started on localhost:${Port}`);
+    console.log(`Worker/Process pid: ${process.pid}`);
   });

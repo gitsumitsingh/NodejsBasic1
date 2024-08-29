@@ -30,7 +30,7 @@
         console.log('getGreeting called');
         try {          
         element.textContent = 'loading...';
-        fetch('http://localhost:3000/user')
+        fetch('http://localhost:7000/user')
           .then((res) => res.json())
           .then((data) => {
             console.log('data fetched successfully1',data);            

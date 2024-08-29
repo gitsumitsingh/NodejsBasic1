@@ -1,4 +1,4 @@
-var http = require("http");
+const http = require("http");
 const url = require("url");
 
 /**
@@ -14,7 +14,7 @@ function httpHandler(req, res) {
     // debugger;
     // Set CORS headers
     // res.setHeader("Access-Control-Allow-Origin", null);
-    // res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+    // res.setHeader("Access-Control-Allow-Origin", "http://localhost:6000");
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
     res.setHeader(

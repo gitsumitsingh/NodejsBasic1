@@ -1,7 +1,7 @@
 const http2 = require("http2");
 
 // Create the client
-const client = http2.connect("http://localhost:3000");
+const client = http2.connect("http://localhost:5000");
 
 // Create the request
 const req = client.request({

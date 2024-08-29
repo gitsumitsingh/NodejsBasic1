@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "dev": "nodemon --inspect server.js",
+    "primary": "nodemon --inspect primary.js",
     "server2": "nodemon --inspect src/http/server2.js",
     "http2": "nodemon --inspect src/http/http2.js",
     "http2client": "nodemon --inspect src/http/http2client.js",

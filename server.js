@@ -1,6 +1,9 @@
 const httpServer = require("./app");
 
-httpServer.listen(3000, function () {
-  console.log("Server started on localhost:3000");
-  //the server object listens on port 3000
+const Port = 7000;
+
+httpServer.listen(Port, function () {
+  //the server object listens on port 7000
+  console.log(`Server started on localhost:${Port}`);
+  console.log(`Worker/Process pid: ${process.pid}`);
 });

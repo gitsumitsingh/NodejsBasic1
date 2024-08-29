@@ -6,7 +6,7 @@ const http2 = require("http2");
 // cert: 'path-to-public-cert.pem'
 // };
 
-// Create and initialize the secure server like https://localhost:3000
+// Create and initialize the secure server like https://localhost:5000
 // const server = http2.createServer(options);
 
 // Create an unencrypted HTTP/2 server
@@ -26,6 +26,9 @@ server.on("stream", (stream, headers) => {
   stream.end("<h1>Hello World</h1>");
 });
 
-server.listen(3000, () => {
-  console.log("Started server on port 3000");
+server.listen(5000, () => {
+  console.log("Started server on port 5000");
 });
+
+//https://mirzaleka.medium.com/a-detailed-look-into-the-node-js-http-module-680eb5e4548a
+//https://www.youtube.com/shorts/paytoH63xC8
