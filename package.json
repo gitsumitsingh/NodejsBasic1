@@ -12,8 +12,10 @@
     "http2": "nodemon --inspect src/http/http2.js",
     "http2client": "nodemon --inspect src/http/http2client.js",
     "http2client2": "nodemon --inspect src/http/http2client2.js",
+    "http2client3": "nodemon --inspect src/http/http2client3.js",
     "debug": "nodemon --inspect main.js",
     "file1": "nodemon --inspect src/file/file1.js",
+    "file2": "nodemon --inspect src/file/file2.js",
     "spawn1": "nodemon --inspect src/child_process/spawn1.js"
   },
   "keywords": [],

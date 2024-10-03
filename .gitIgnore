@@ -4,4 +4,6 @@
 
 # static files
 /src/file/op/input1.txt
+/src/FlatFiles/
+/src/Punchout/
 /src/file/op/mynewfile3.txt
