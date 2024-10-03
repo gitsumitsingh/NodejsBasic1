@@ -1,5 +1,6 @@
 var http = require("http");
 const fs = require("fs");
+const path = require("path");
 const Port = 6100;
 http
   .createServer(function (req, res) {
@@ -63,6 +64,15 @@ http
           }
         });
       }
+
+      // // GET profile page
+      // else if (req.url === "/page") {
+      //   let fileName = "User.html";
+      //   const options = {
+      //     root: path.join(__dirname, "../Views/"),
+      //   };
+      //   res.sendFile(fileName, options);//will work with express.js
+      // }
 
       // if route is not set
       else {
