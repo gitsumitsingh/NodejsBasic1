@@ -50,3 +50,46 @@ req.on("error", function (err) {
 // End the request
 req.end();
 */
+
+/*
+const https = require("https");
+const axios = require("axios");
+
+const agent = new https.Agent({
+  rejectUnauthorized: false,
+});
+
+function writeInfoLogServer(logMessage, url = "") {
+  let isLogged = false;
+  try {
+    let options = {
+      httpsAgent: agent,
+      headers: {
+        "content-type": "application/json",
+      },
+    };
+
+    let bodyData = {
+      id: 11,
+      name: "Tom Brady",
+      username: "Brad",
+      email: "tombrad@asd.com",
+    };
+
+    axios
+      .post("https://jsonplaceholder.typicode.com/users", bodyData, options)
+      .then((res) => {
+        console.log("res: ", res.status, res.data, res);
+      })
+      .catch((err) => {
+        console.error(
+          "Error on calling writeInfoLogServer axios catch: " + err.message
+        );
+      });
+  } catch (err) {
+    console.error("Error on calling writeInfoLogServer catch: " + err.message);
+  }
+  return isLogged;
+}
+
+*/
