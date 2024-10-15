@@ -1,4 +1,27 @@
-const http2 = require("http2");
+const https = require("https");
+
+// Sample URL
+const url = "https://jsonplaceholder.typicode.com/todos/1";
+
+const request = https.request(url, (response) => {
+  let data = "";
+  response.on("data", (chunk) => {
+    data = data + chunk.toString();
+  });
+
+  response.on("end", () => {
+    const body = JSON.parse(data);
+    console.log(body);
+  });
+});
+
+request.on("error", (error) => {
+  console.log("An error", error);
+});
+
+request.end();
+
+/* const http2 = require("http2");
 
 // Create the client
 const client = http2.connect("http://localhost:5000");
@@ -26,3 +49,4 @@ req.on("error", function (err) {
 
 // End the request
 req.end();
+*/
